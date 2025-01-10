@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Editar Usuário</h1>
-    <form method="POST" action="">
+    <form method="POST" action="" onsubmit="return validarFormulario()">
         <input type="hidden" name="id" value="<?php echo $usuario['id']; ?>">
         <label for="nome">Nome:</label>
         <input type="text" name="nome" id="nome" value="<?php echo $usuario['nome']; ?>" required>
@@ -46,6 +46,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <br>
         <button type="submit">Salvar Alterações</button>
     </form>
+    <script>
+        function validarFormulario() {
+            const nome = document.getElementById('nome').value.trim();
+            const email = document.getElementById('email').value.trim();
+
+            if (nome === '' || email === '') {
+                alert('Por favor, preencha todos os campos.');
+                return false;
+            }
+
+            const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regexEmail.test(email)) {
+                alert('Por favor, insira um email válido.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
     <a href="listar_usuarios.php">Voltar para a Lista</a>
 </body>
 </html>
