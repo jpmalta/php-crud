@@ -12,6 +12,7 @@ require 'conexao.php';
 </head>
 <body>
     <h1>Bem-vindo ao Sistema CRUD de Usuários</h1>
+    <h2>Autor: João Pedro Costa Malta</h2>
     <p>Selecione uma opção abaixo:</p>
     <ul>
         <li><a href="listar_usuarios.php">Listar Usuários</a></li>
