@@ -14,6 +14,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
 
+    if (empty($nome) || empty($email)) {
+        echo "Por favor, preencha todos os campos.";
+        exit();
+    }
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Email inválido.";
+        exit();
+    }
+
+    // Verifica se o email já está em uso por outro usuário
+    $sql = "SELECT * FROM usuarios WHERE email = '$email' AND id != $id";
+    $result = $conn->query($sql);
+    if ($result->num_rows > 0) {
+        echo "O email já está em uso por outro usuário.";
+        exit();
+    }
+
     $sql = "UPDATE usuarios SET nome = '$nome', email = '$email' WHERE id = $id";
 
     if ($conn->query($sql)) {
