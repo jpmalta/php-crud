@@ -54,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <h1>Editar Usuário</h1>
+    <a href="index.php" class="back-button">Voltar para a Tela Principal</a>
     <form method="POST" action="" onsubmit="return validarFormulario()">
         <input type="hidden" name="id" value="<?php echo $usuario['id']; ?>">
         <label for="nome">Nome:</label>

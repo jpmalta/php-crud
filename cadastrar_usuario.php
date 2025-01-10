@@ -56,7 +56,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <h1>Cadastrar Novo Usuário</h1>
+    <header>    
+        <h1>Cadastrar Novo Usuário</h1>
+        <a href="index.php" class="back-button">Voltar para a Tela Principal</a>
+    </header>
     <form method="POST" action="" onsubmit="return validarFormulario()">
         <label for="nome">Nome:</label>
         <input type="text" name="nome" id="nome" required>

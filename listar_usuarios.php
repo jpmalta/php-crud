@@ -15,8 +15,11 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-    <h1>Lista de Usuários</h1>
-    <a href="cadastrar_usuario.php">Cadastrar Novo Usuário</a>
+    <header>
+        <h1>Lista de Usuários</h1>
+        <a href="cadastrar_usuario.php">Cadastrar Novo Usuário</a>
+        <a href="index.php" class="back-button">Voltar para a Tela Principal</a>
+    </header>
     <table border="1">
         <thead>
             <tr>
