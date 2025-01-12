@@ -20,6 +20,18 @@ $result = $conn->query($sql);
         <a href="cadastrar_usuario.php">Cadastrar Novo Usuário</a>
         <a href="index.php" class="back-button">Voltar para a Tela Principal</a>
     </header>
+    <!-- Formulário de Busca -->
+    <form method="GET" action="listar_usuarios.php" style="text-align: center; margin-bottom: 20px;">
+            <input 
+                type="text" 
+                name="search" 
+                placeholder="Digite o nome ou email" 
+                value="<?php echo isset($_GET['search']) ? htmlspecialchars($_GET['search']) : ''; ?>" 
+                style="padding: 10px; width: 300px;"
+            >
+            <button type="submit" style="padding: 10px 20px; background-color: #007BFF; color: white; border: none; border-radius: 5px;">Buscar</button>
+        </form>
+    <!-- Tabela de Usuários -->   
     <table border="1">
         <thead>
             <tr>
