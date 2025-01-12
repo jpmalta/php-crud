@@ -4,7 +4,20 @@ require 'conexao.php';
 // Consulta para buscar todos os usuários
 $sql = "SELECT * FROM usuarios";
 $result = $conn->query($sql);
+
+$search = isset($_GET['search']) ? $_GET['search'] : '';
+
+if (!empty($search)) {
+    $query = $pdo->prepare("SELECT * FROM usuarios WHERE nome LIKE :search OR email LIKE :search");
+    $query->bindValue(':search', '%' . $search . '%');
+} else {
+    $query = $pdo->prepare("SELECT * FROM usuarios");
+}
+
+$query->execute();
+$usuarios = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -59,6 +72,22 @@ $result = $conn->query($sql);
                     <td colspan="4">Nenhum usuário encontrado.</td>
                 </tr>
             <?php endif; ?>
+            <?php if (count($usuarios) > 0) {
+                foreach ($usuarios as $usuario) {
+                    echo "<tr>";
+                    echo "<td>{$usuario['id']}</td>";
+                    echo "<td>{$usuario['nome']}</td>";
+                    echo "<td>{$usuario['email']}</td>";
+                    echo "<td>
+                            <a href='editar_usuario.php?id={$usuario['id']}'>Editar</a> | 
+                            <a href='excluir_usuario.php?id={$usuario['id']}'>Excluir</a>
+                        </td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='4'>Nenhum usuário encontrado.</td></tr>";
+            }
+            ?>
         </tbody>
     </table>
 </body>
